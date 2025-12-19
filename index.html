@@ -3,36 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Mini Blog</title>
-    <style>
-        body {
-            font-family: Arial;
-            background: #f4f4f4;
-            padding: 20px;
-        }
-        .box {
-            background: white;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-        }
-        .comment {
-            border-bottom: 1px solid #ddd;
-            padding: 10px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Mini Blog</h1>
-<p>اكتب تعليقك:</p>
+<header>
+    <h1>Mini Blog</h1>
+</header>
 
-<div class="box">
-    <textarea id="comment" rows="4" cols="50"></textarea><br><br>
-    <button onclick="addComment()">إرسال</button>
+<div class="container">
+
+    <div class="card">
+        <h2>أضف تعليقك</h2>
+        <textarea id="comment" placeholder="اكتب تعليقك هنا..."></textarea>
+        <button onclick="addComment()">إرسال</button>
+    </div>
+
+    <div class="card">
+        <h2>التعليقات</h2>
+        <div id="comments"></div>
+    </div>
+
 </div>
 
-<h2>التعليقات</h2>
-<div id="comments" class="box"></div>
+<footer>
+    مشروع تدريبي – XSS فقط على موقعك الشخصي
+</footer>
 
 <script>
     function loadComments() {
@@ -48,7 +44,6 @@
 
         commentsDiv.innerHTML += "<div class='comment'>" + comment + "</div>";
 
-        // تخزين التعليقات (XSS يضل موجود)
         localStorage.setItem("comments", commentsDiv.innerHTML);
         document.getElementById("comment").value = "";
     }
